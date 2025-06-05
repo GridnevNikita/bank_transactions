@@ -8,17 +8,37 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "pandas (>=2.3.0,<3.0.0)",
+    "requests (>=2.32.3,<3.0.0)",
+    "openpyxl (>=3.1.5,<4.0.0)",
+    "python-dotenv (>=1.1.0,<2.0.0)"
 ]
 
 [tool.poetry]
-packages = [{ include = "*" , from = "src" }]
+packages = [{ include = "*",  from = "src" }]
 
+[tool.black]
+line-length = 119
+exclude = ".git/"
+
+[tool.isort]
+line-length = 119
+
+[tool.mypy]
+disallow_untyped_defs = true
+warn_return_any = true
+exclude = ".venv/"
 
 [tool.poetry.group.lint.dependencies]
 flake8 = "^7.2.0"
 black = "^25.1.0"
 isort = "^6.0.1"
 mypy = "^1.16.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.0"
+pytest-cov = "^6.1.1"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
