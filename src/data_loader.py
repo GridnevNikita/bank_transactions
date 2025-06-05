@@ -2,19 +2,21 @@ from typing import List, Dict
 import pandas as pd
 import json
 
+
 def load_excel_transactions(path: str) -> List[Dict]:
     """
     Загружает транзакции из Excel-файла и возвращает список словарей.
     """
     df = pd.read_excel(path)
-    return df.to_dict(orient='records')
+    return df.to_dict(orient="records")
+
 
 def load_user_settings(path: str) -> Dict:
     """
     Загружает пользовательские настройки из JSON-файла.
     """
     try:
-        with open(path, 'r', encoding='utf-8') as f:
+        with open(path, "r", encoding="utf-8") as f:
             settings = json.load(f)
         return settings
     except FileNotFoundError:
