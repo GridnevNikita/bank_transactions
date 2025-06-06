@@ -1,6 +1,7 @@
-from typing import List, Dict
-import pandas as pd
 import json
+from typing import Dict, List
+
+import pandas as pd
 
 
 def load_excel_transactions(path: str) -> List[Dict]:

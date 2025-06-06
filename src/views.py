@@ -1,82 +1,41 @@
+import json
 from datetime import datetime
-from typing import List, Dict, Any
+from typing import Any, Dict
+
+from src.data_loader import load_excel_transactions, load_user_settings
+from src.services import get_currency_rates, get_stock_prices
+from src.utils import filter_transactions_by_date, get_cards_summary, get_greeting, get_top_transactions
 
 
-def get_greeting() -> str:
-    """Программа приветствует в зависимости от текущего времени."""
-    current_hour = datetime.now().hour
-    if 5 <= current_hour < 12:
-        return "Доброе утро!"
-    elif 12 <= current_hour < 18:
-        return "Добрый день!"
-    elif 18 <= current_hour < 23:
-        return "Добрый вечер!"
-    else:
-        return "Доброй ночи!"
-
-def get_cards_summary(transactions: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+def generate_report(date_str: str) -> Dict[str, Any]:
     """
-    Возвращает список словарей с данными по каждой карте.
+    Главная функция: принимает дату (YYYY-MM-DD HH:MM:SS),
+    возвращает JSON-ответ с аналитикой.
     """
-    cards_summary: Dict[str, float] = {}
+    # Преобразуем дату
+    input_date = datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S")
+    formatted_date = input_date.strftime("%d.%m.%Y")
 
-    for transaction in transactions:
-        if (
-                isinstance(transaction.get("Номер карты"), str)
-                and transaction.get("Статус") != "FAILED"
-                and isinstance(transaction.get("Сумма операции"), (int, float))
-                and transaction["Сумма операции"] < 0
-        ):
-            card = transaction["Номер карты"][-4:]
-            amount = -transaction["Сумма операции"]
+    # Загружаем данные
+    transactions = load_excel_transactions("../data/operations.xlsx")
+    settings = load_user_settings("../user_settings.json")
+    currencies = settings.get("user_currencies", [])
+    stocks = settings.get("user_stocks", [])
 
-            cards_summary[card] = cards_summary.get(card, 0) + amount
+    # Фильтрация транзакций по дате
+    filtered = filter_transactions_by_date(transactions, formatted_date)
 
-    result = []
-    for last_digits, total_spent in cards_summary.items():
-        result.append({
-            "last_digits": last_digits,
-            "total_spent": round(total_spent, 2),
-            "cashback": round(total_spent * 0.01, 2)  # 1% от расходов
-        })
-
-    return result
-
-
-from typing import List, Dict
-
-def get_top_transactions(transactions: List[Dict], top_n: int = 5) -> List[Dict]:
-    """
-    Возвращает топ-N транзакций с наибольшими расходами.
-    Учитываются только транзакции со статусом 'OK' и отрицательной суммой.
-    """
-    filtered = [
-        transaction for transaction in transactions
-        if transaction.get("Статус") == "OK"
-           and isinstance(transaction.get("Сумма операции"), (int, float))
-           and transaction["Сумма операции"] < 0
-    ]
-    sorted_tx = sorted(filtered, key=lambda i: abs(i["Сумма операции"]), reverse=True)
-    top_transactions = []
-    for i in sorted_tx[:top_n]:
-        top_transactions.append({
-            "date": i.get("Дата платежа", ""),
-            "amount": round(abs(i["Сумма операции"]), 2),
-            "category": i.get("Категория", ""),
-            "description": i.get("Описание", "")
-        })
-
-    return top_transactions
-
+    # Формирование JSON-ответа
+    return {
+        'greeting': get_greeting(),
+        'cards': get_cards_summary(filtered),
+        'top_transactions': get_top_transactions(filtered),
+        'currency_rates': get_currency_rates(currencies),
+        'stock_prices': get_stock_prices(stocks),
+    }
 
 
 if __name__ == "__main__":
-    print(get_greeting())
-    from data_loader import load_excel_transactions
-    from utils import filter_transactions_by_date
-    transactions = load_excel_transactions("../data/operations.xlsx")
-    filtered_transactions = filter_transactions_by_date(transactions, "31.12.2021")
-    report = get_cards_summary(filtered_transactions)
-    top = get_top_transactions(filtered_transactions)
-    # print("Отчёт по картам:")
-    print(top)
+    input_date = "2021-12-31 23:59:59"
+    result = generate_report(input_date)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
