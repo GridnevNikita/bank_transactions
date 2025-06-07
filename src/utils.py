@@ -103,15 +103,13 @@ def get_top_transactions(transactions: List[Dict], top_n: int = 5) -> List[Dict]
 
     return top_transactions
 
-
-load_dotenv()
-API_KEY = os.getenv("API_KEY")
-
-
 def get_currency_rates(currencies: List[str], base: str = "RUB") -> List[Dict[str, float]]:
     """
     Получает курсы заданных валют по отношению к базовой валюте (по умолчанию RUB).
     """
+    load_dotenv()
+    API_KEY = os.getenv("API_KEY")
+
     url = f"https://financialmodelingprep.com/api/v3/fx?apikey={API_KEY}"
     try:
         response = requests.get(url, timeout=10)
@@ -139,6 +137,9 @@ def get_stock_prices(stocks: List[str]) -> List[Dict[str, float]]:
     """
     if not stocks:
         return []
+
+    load_dotenv()
+    API_KEY = os.getenv("API_KEY")
 
     symbols = ",".join(stocks)
     url = f"https://financialmodelingprep.com/api/v3/quote/{symbols}?apikey={API_KEY}"
