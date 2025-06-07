@@ -30,7 +30,7 @@ def load_user_settings(path: str) -> Dict:
 
 if __name__ == "__main__":
     # Тестируем загрузку транзакций из Excel
-    excel_path = "../data/operations.xlsx"  # путь к твоему файлу Excel
+    excel_path = "../data/operations.xlsx"
     transactions = load_excel_transactions(excel_path)
     print(f"Загружено транзакций: {len(transactions)}")
     if transactions:
