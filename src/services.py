@@ -51,7 +51,7 @@ def search_transfers_to_individuals(transactions: List[Dict[str, Any]]) -> str:
     Возвращает JSON-строку со списком найденных транзакций.
     """
     person_transfer = re.compile(r"\w+ \w\.", re.IGNORECASE)
-    transfer = re.compile(r"перевод\w*", re.IGNORECASE)
+    transfer = re.compile(r"^переводы$", re.IGNORECASE)
     filtered_person = []
     for transaction in transactions:
         description = transaction.get("Описание")
@@ -67,11 +67,11 @@ def search_transfers_to_individuals(transactions: List[Dict[str, Any]]) -> str:
     return json.dumps(filtered_person, ensure_ascii=False, indent=2)
 
 
-if __name__ == "__main__":
-    from data_loader import load_excel_transactions
-
-    transactions = load_excel_transactions("../data/operations.xlsx")
-    # query = 'маГНИТ'
-    # result_json = search_transactions(transactions, query)
-    result_json = search_transfers_to_individuals(transactions)
-    print(result_json)
+# if __name__ == "__main__":
+#     from data_loader import load_excel_transactions
+#
+#     transactions = load_excel_transactions("../data/operations.xlsx")
+#     # query = 'маГНИТ'
+#     # result_json = search_transactions(transactions, query)
+#     result_json = search_transfers_to_individuals(transactions)
+#     print(result_json)

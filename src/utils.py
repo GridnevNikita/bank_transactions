@@ -19,7 +19,8 @@ file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 logger.debug("Логгер инициализирован и готов к работе")
 
-def filter_transactions_by_date(transactions: List[Dict], date_str: str) -> List[Dict]:
+
+def filter_transactions_by_date(transactions: List[Dict[str, Any]], date_str: str) -> List[Dict[str, Any]]:
     """
     Фильтрует транзакции по дате операции.
     Принимает дату в формате 'ДД.ММ.ГГГГ'.
@@ -29,7 +30,6 @@ def filter_transactions_by_date(transactions: List[Dict], date_str: str) -> List
     input_date = datetime.strptime(date_str, "%d.%m.%Y")
     start_date = datetime.combine(input_date.replace(day=1).date(), time.min)
     end_date = datetime.combine(input_date.date(), time.max)
-
     filtered_list = []
     for transaction in transactions:
         try:
@@ -38,12 +38,14 @@ def filter_transactions_by_date(transactions: List[Dict], date_str: str) -> List
                 logger.warning(f"Неверный формат даты операции: {raw_date} (не строка)")
                 continue
             operation_date = datetime.strptime(raw_date, "%d.%m.%Y %H:%M:%S")
-
             if start_date <= operation_date <= end_date:
                 filtered_list.append(transaction)
-        except (KeyError, ValueError):
-            logger.warning(f"Ошибка при обработке транзакции {transaction.get('id', '')}: {e}")
-            continue
+
+        except KeyError as e:
+            logger.warning(f"Пропущен ключ {e} в транзакции: {transaction}")
+        except ValueError as e:
+            logger.warning(f"Ошибка преобразования даты в транзакции {transaction.get('id', '')}: {e}")
+
     logger.debug(f"Отфильтровано транзакций: {len(filtered_list)} из {len(transactions)}")
     return filtered_list
 
