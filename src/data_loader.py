@@ -28,17 +28,18 @@ def load_user_settings(path: str) -> Dict:
         return {}
 
 
-if __name__ == "__main__":
-    # Тестируем загрузку транзакций из Excel
-    excel_path = "../data/operations.xlsx"
-    transactions = load_excel_transactions(excel_path)
-    print(f"Загружено транзакций: {len(transactions)}")
-    if transactions:
-        print("Пример первой транзакции:", transactions[0])
-
-    # Тестируем загрузку настроек пользователя из JSON
-    settings_path = "../user_settings.json"
-    settings = load_user_settings(settings_path)
-    print("Загруженные настройки пользователя:", settings)
-    print("Валюты:", settings.get("user_currencies"))
-    print("Акции:", settings.get("user_stocks"))
+# if __name__ == "__main__":
+#     # Тестируем загрузку транзакций из Excel
+#     excel_path = "../data/operations.xlsx"
+#     transactions = load_excel_transactions(excel_path)
+#     print(f"Загружено транзакций: {len(transactions)}")
+#     for i, transaction in enumerate(transactions[:5], 1):
+#         print(f"\nТранзакция {i}:")
+#         print(json.dumps(transaction, ensure_ascii=False, indent=4))
+# #
+# #     # Тестируем загрузку настроек пользователя из JSON
+# #     settings_path = "../user_settings.json"
+# #     settings = load_user_settings(settings_path)
+# #     print("Загруженные настройки пользователя:", settings)
+# #     print("Валюты:", settings.get("user_currencies"))
+# #     print("Акции:", settings.get("user_stocks"))

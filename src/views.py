@@ -1,4 +1,3 @@
-import json
 from datetime import datetime
 from typing import Any, Dict
 
@@ -35,7 +34,7 @@ def generate_report(date_str: str) -> Dict[str, Any]:
     }
 
 
-if __name__ == "__main__":
-    input_date = "2021-12-31 23:59:59"
-    result = generate_report(input_date)
-    print(json.dumps(result, ensure_ascii=False, indent=2))
+# if __name__ == "__main__":
+#     input_date = "2021-12-31 23:59:59"
+#     result = generate_report(input_date)
+#     print(json.dumps(result, ensure_ascii=False, indent=2))

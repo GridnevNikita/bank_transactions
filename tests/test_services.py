@@ -1,8 +1,10 @@
+import pandas as pd
 import pytest
 import json
 from typing import List, Dict, Any
 
-from src.services import search_transactions, search_by_phone_number, search_transfers_to_individuals
+from src.services import search_transactions, search_by_phone_number, search_transfers_to_individuals, \
+    get_bonus_categories
 
 
 @pytest.fixture
@@ -72,3 +74,27 @@ def test_search_transfers_to_individuals(individual_transfer_transactions, expec
     result = json.loads(result_json)
     assert isinstance(result, list)
     assert len(result) == expected_count
+
+@pytest.fixture
+def cashback_transactions() -> List[Dict[str, Any]]:
+    return [
+        {"Дата операции": "15.06.2023 12:00:00", "Категория": "Фастфуд", "Кэшбэк": 50.5},
+        {"Дата операции": "20.06.2023 15:30:00", "Категория": "Фастфуд", "Кэшбэк": pd.NA},
+        {"Дата операции": "05.06.2023 09:00:00", "Категория": "Аптеки", "Кэшбэк": pd.NA},
+        {"Дата операции": "10.05.2023 14:00:00", "Категория": "Аптеки", "Кэшбэк": 10},
+        {"Дата операции": "25.06.2023 18:00:00", "Категория": "Различные товары", "Кэшбэк": 30},
+    ]
+
+@pytest.mark.parametrize(
+    "year, month, expected_result",
+    [
+        (2023, 6, {"Фастфуд": 50, "Различные товары": 30}),
+        (2023, 5, {"Аптеки": 10}),
+        (2023, 7, {}),
+    ]
+)
+def test_get_bonus_categories(cashback_transactions, year, month, expected_result):
+    result_json = get_bonus_categories(cashback_transactions, year, month)
+    result = json.loads(result_json)
+    assert isinstance(result, dict)
+    assert result == expected_result

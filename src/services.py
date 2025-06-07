@@ -1,6 +1,41 @@
 import json
 import re
+from datetime import datetime
 from typing import Any, Dict, List
+
+import pandas as pd
+
+
+def get_bonus_categories(data: List[Dict], year: int, month: int) -> str:
+    """
+    Анализ выгодных категорий повышенного кешбэка.
+    """
+    cashback_by_category = {}
+
+    for i in data:
+        date_str = i["Дата операции"]
+        date = datetime.strptime(date_str, "%d.%m.%Y %H:%M:%S")
+
+        if date.year != year or date.month != month:
+            continue
+
+        category = i["Категория"]
+        cashback = i.get("Кэшбэк", 0)
+        if pd.isna(cashback):
+            cashback = 0
+
+        cashback_by_category[category] = cashback_by_category.get(category, 0) + cashback
+
+    cashback_by_category_filtered = {k: v for k, v in cashback_by_category.items() if v != 0}
+    cashback_by_category_rounded = dict(
+        sorted(((k, round(v)) for k, v in cashback_by_category_filtered.items()), key=lambda x: x[1], reverse=True)
+    )
+
+    return json.dumps(cashback_by_category_rounded, ensure_ascii=False, indent=4)
+
+
+def get_invest_piggybank():
+    pass
 
 
 def search_transactions(transactions: List[Dict[str, Any]], query: str) -> str:
@@ -69,9 +104,9 @@ def search_transfers_to_individuals(transactions: List[Dict[str, Any]]) -> str:
 
 # if __name__ == "__main__":
 #     from data_loader import load_excel_transactions
-#
 #     transactions = load_excel_transactions("../data/operations.xlsx")
-#     # query = 'маГНИТ'
-#     # result_json = search_transactions(transactions, query)
-#     result_json = search_transfers_to_individuals(transactions)
+# #     # query = 'маГНИТ'
+# #     # result_json = search_transactions(transactions, query)
+# #     result_json = search_transfers_to_individuals(transactions)
+#     result_json = get_bonus_categories(transactions,2019,4)
 #     print(result_json)
