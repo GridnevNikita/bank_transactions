@@ -1,5 +1,9 @@
+import os
 from datetime import datetime, time
 from typing import Any, Dict, List
+
+import requests
+from dotenv import load_dotenv
 
 
 def filter_transactions_by_date(transactions: List[Dict], date_str: str) -> List[Dict]:
@@ -98,3 +102,59 @@ def get_top_transactions(transactions: List[Dict], top_n: int = 5) -> List[Dict]
         )
 
     return top_transactions
+
+
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
+
+
+def get_currency_rates(currencies: List[str], base: str = "RUB") -> List[Dict[str, float]]:
+    """
+    Получает курсы заданных валют по отношению к базовой валюте (по умолчанию RUB).
+    """
+    url = f"https://financialmodelingprep.com/api/v3/fx?apikey={API_KEY}"
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+    except Exception as e:
+        print(f"Ошибка при запросе валютных курсов: {e}")
+        return []
+
+    results = []
+    for currency in currencies:
+        pair = f"{currency}/RUB"
+        match = next((item for item in data if item.get("ticker") == pair), None)
+        if match and "ask" in match:
+            results.append({"currency": currency, "rate": round(match["ask"], 4)})
+        else:
+            print(f"Не найден курс для {pair}")
+
+    return results
+
+
+def get_stock_prices(stocks: List[str]) -> List[Dict[str, float]]:
+    """
+    Получает текущие цены акций по списку тикеров.
+    """
+    if not stocks:
+        return []
+
+    symbols = ",".join(stocks)
+    url = f"https://financialmodelingprep.com/api/v3/quote/{symbols}?apikey={API_KEY}"
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+    except Exception as e:
+        print(f"Ошибка при запросе цен акций: {e}")
+        return []
+
+    results = []
+    for item in data:
+        if "symbol" in item and "price" in item:
+            results.append({"stock": item["symbol"], "price": round(item["price"], 2)})
+        else:
+            print(f"Данные отсутствуют для {item.get('symbol', 'неизвестного тикера')}")
+
+    return results

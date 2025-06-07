@@ -3,8 +3,8 @@ from datetime import datetime
 from typing import Any, Dict
 
 from src.data_loader import load_excel_transactions, load_user_settings
-from src.services import get_currency_rates, get_stock_prices
-from src.utils import filter_transactions_by_date, get_cards_summary, get_greeting, get_top_transactions
+from src.utils import (filter_transactions_by_date, get_cards_summary, get_currency_rates, get_greeting,
+                       get_stock_prices, get_top_transactions)
 
 
 def generate_report(date_str: str) -> Dict[str, Any]:
@@ -27,11 +27,11 @@ def generate_report(date_str: str) -> Dict[str, Any]:
 
     # Формирование JSON-ответа
     return {
-        'greeting': get_greeting(),
-        'cards': get_cards_summary(filtered),
-        'top_transactions': get_top_transactions(filtered),
-        'currency_rates': get_currency_rates(currencies),
-        'stock_prices': get_stock_prices(stocks),
+        "greeting": get_greeting(),
+        "cards": get_cards_summary(filtered),
+        "top_transactions": get_top_transactions(filtered),
+        "currency_rates": get_currency_rates(currencies),
+        "stock_prices": get_stock_prices(stocks),
     }
 
 
