@@ -103,6 +103,7 @@ def get_top_transactions(transactions: List[Dict], top_n: int = 5) -> List[Dict]
 
     return top_transactions
 
+
 def get_currency_rates(currencies: List[str], base: str = "RUB") -> List[Dict[str, float]]:
     """
     Получает курсы заданных валют по отношению к базовой валюте (по умолчанию RUB).

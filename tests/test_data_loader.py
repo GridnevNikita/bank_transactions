@@ -1,7 +1,7 @@
 import json
-from unittest.mock import patch, Mock
+from unittest.mock import Mock, patch
 
-from src.data_loader import load_user_settings, load_excel_transactions
+from src.data_loader import load_excel_transactions, load_user_settings
 
 
 @patch("json.load")
@@ -31,6 +31,7 @@ def test_load_user_settings_json_decode_error(mock_open, mock_json_load):
     mock_open.assert_called_once_with("bad.json", "r", encoding="utf-8")
     mock_json_load.assert_called_once()
     assert result == {}
+
 
 @patch("src.data_loader.pd.read_excel")
 def test_load_excel_transactions_success(mock_read_excel):
