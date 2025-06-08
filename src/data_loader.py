@@ -1,25 +1,25 @@
 import json
-from typing import Dict, List
+from typing import Any, Dict, List, cast
 
 import pandas as pd
 
 
-def load_excel_transactions(path: str) -> List[Dict]:
+def load_excel_transactions(path: str) -> List[Dict[str, Any]]:
     """
     Загружает транзакции из Excel-файла и возвращает список словарей.
     """
     df = pd.read_excel(path)
-    return df.to_dict(orient="records")
+    return cast(List[Dict[str, Any]], df.to_dict(orient="records"))
 
 
-def load_user_settings(path: str) -> Dict:
+def load_user_settings(path: str) -> Dict[str, Any]:
     """
     Загружает пользовательские настройки из JSON-файла.
     """
     try:
         with open(path, "r", encoding="utf-8") as f:
             settings = json.load(f)
-        return settings
+        return cast(Dict[str, Any], settings)
     except FileNotFoundError:
         print(f"Файл настроек не найден по пути: {path}")
         return {}

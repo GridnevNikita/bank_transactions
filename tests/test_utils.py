@@ -2,14 +2,8 @@ from unittest.mock import Mock, patch
 
 import pytest
 
-from src.utils import (
-    filter_transactions_by_date,
-    get_cards_summary,
-    get_currency_rates,
-    get_greeting,
-    get_stock_prices,
-    get_top_transactions,
-)
+from src.utils import (filter_transactions_by_date, get_cards_summary, get_currency_rates, get_greeting,
+                       get_stock_prices, get_top_transactions)
 
 
 @pytest.fixture

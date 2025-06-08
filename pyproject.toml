@@ -39,6 +39,8 @@ mypy = "^1.16.0"
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.0"
 pytest-cov = "^6.1.1"
+pandas-stubs = "^2.2.3.250527"
+types-requests = "^2.32.0.20250602"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
