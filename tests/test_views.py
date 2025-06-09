@@ -1,3 +1,4 @@
+import json
 from unittest.mock import patch
 
 import pytest
@@ -63,7 +64,8 @@ def test_generate_report(
     mock_currency.return_value = {"USD": 90.0, "EUR": 100.0}
     mock_stocks.return_value = {"AAPL": 150.0, "GOOG": 2800.0}
 
-    result = generate_report(date_str)
+    result_json = generate_report(date_str)
+    result = json.loads(result_json)
 
     assert result["greeting"] == "Добрый день"
     assert "cards" in result

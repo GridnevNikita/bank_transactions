@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 from typing import Any, Dict
 
@@ -6,10 +7,10 @@ from src.utils import (filter_transactions_by_date, get_cards_summary, get_curre
                        get_stock_prices, get_top_transactions)
 
 
-def generate_report(date_str: str) -> Dict[str, Any]:
+def generate_report(date_str: str) -> str:
     """
     Главная функция: принимает дату (YYYY-MM-DD HH:MM:SS),
-    возвращает JSON-ответ с аналитикой.
+    возвращает JSON-строку с аналитикой.
     """
     # Преобразуем дату
     input_date = datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S")
@@ -24,8 +25,8 @@ def generate_report(date_str: str) -> Dict[str, Any]:
     # Фильтрация транзакций по дате
     filtered = filter_transactions_by_date(transactions, formatted_date)
 
-    # Формирование JSON-ответа
-    return {
+    # Сбор данных в словарь
+    report_data: Dict[str, Any] = {
         "greeting": get_greeting(),
         "cards": get_cards_summary(filtered),
         "top_transactions": get_top_transactions(filtered),
@@ -33,8 +34,12 @@ def generate_report(date_str: str) -> Dict[str, Any]:
         "stock_prices": get_stock_prices(stocks),
     }
 
+    # Преобразование в JSON-строку
+    json_result = json.dumps(report_data, ensure_ascii=False, indent=2)
+    return json_result
+
 
 # if __name__ == "__main__":
 #     input_date = "2021-12-31 23:59:59"
 #     result = generate_report(input_date)
-#     print(json.dumps(result, ensure_ascii=False, indent=2))
+#     print(result)
