@@ -1,5 +1,4 @@
 import json
-import locale
 import logging
 import os
 from datetime import datetime
@@ -8,7 +7,6 @@ from typing import Any, Callable, Optional
 
 import pandas as pd
 from dateutil.relativedelta import relativedelta
-
 
 logger = logging.getLogger("reports")
 logger.setLevel(logging.DEBUG)
@@ -22,6 +20,7 @@ file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(m
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 logger.debug("Логгер инициализирован и готов к работе")
+
 
 def auto_name_save_report(func: Callable) -> Callable:
     """
@@ -175,15 +174,21 @@ def spending_by_weekday(transactions: pd.DataFrame, date: Optional[str] = None) 
 
     logger.info(f"Количество трат за период: {len(filtered)}")
 
-    filtered["День недели"] = filtered["Дата операции"].dt.day_name().map({
-        "Monday": "Понедельник",
-        "Tuesday": "Вторник",
-        "Wednesday": "Среда",
-        "Thursday": "Четверг",
-        "Friday": "Пятница",
-        "Saturday": "Суббота",
-        "Sunday": "Воскресенье",
-    })
+    filtered["День недели"] = (
+        filtered["Дата операции"]
+        .dt.day_name()
+        .map(
+            {
+                "Monday": "Понедельник",
+                "Tuesday": "Вторник",
+                "Wednesday": "Среда",
+                "Thursday": "Четверг",
+                "Friday": "Пятница",
+                "Saturday": "Суббота",
+                "Sunday": "Воскресенье",
+            }
+        )
+    )
 
     result = filtered.groupby("День недели")["Сумма операции"].mean().abs()
 

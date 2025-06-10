@@ -133,15 +133,16 @@ def investment_bank_transactions() -> List[Dict[str, Any]]:
 @pytest.mark.parametrize(
     "month, limit, expected_savings",
     [
-        ("2018-10", 10, 8),
-        ("2018-10", 50, 78),
-        ("2018-10", 100, 128),
-        ("2018-09", 10, 0),
+        ("2018-10", 10, {"total_savings": 8, "limit": 10, "month": "2018-10"}),
+        ("2018-10", 50, {"total_savings": 78, "limit": 50, "month": "2018-10"}),
+        ("2018-10", 100, {"total_savings": 128, "limit": 100, "month": "2018-10"}),
+        ("2018-09", 10, {"total_savings": 0, "limit": 10, "month": "2018-09"}),
     ],
 )
 def test_investment_bank(investment_bank_transactions, month, limit, expected_savings):
-    result = investment_bank(month, investment_bank_transactions, limit)
-    assert isinstance(result, float)
+    result_json = investment_bank(month, investment_bank_transactions, limit)
+    result = json.loads(result_json)
+    assert isinstance(result, dict)
     assert abs(result == expected_savings)
 
 

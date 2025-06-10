@@ -1,8 +1,10 @@
+import json
 import logging
 import os
 from datetime import datetime, time
-from typing import Any, Dict, List
+from typing import Any, Dict, List, cast
 
+import pandas as pd
 import requests
 from dotenv import load_dotenv
 
@@ -188,3 +190,32 @@ def get_stock_prices(stocks: List[str]) -> List[Dict[str, float]]:
             logger.warning(f"Данные отсутствуют для {item.get('symbol', 'неизвестного тикера')}")
 
     return results
+
+
+def load_excel_transactions(path: str) -> List[Dict[str, Any]]:
+    """
+    Загружает транзакции из Excel-файла и возвращает список словарей.
+    """
+    logger.debug(f"Начинаем загрузку транзакций из Excel-файла: {path}")
+    df = pd.read_excel(path)
+    transactions = cast(List[Dict[str, Any]], df.to_dict(orient="records"))
+    logger.debug(f"Успешно загружено {len(transactions)} транзакций")
+    return transactions
+
+
+def load_user_settings(path: str) -> Dict[str, Any]:
+    """
+    Загружает пользовательские настройки из JSON-файла.
+    """
+    logger.debug(f"Попытка загрузки пользовательских настроек из {path}")
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            settings = json.load(f)
+        logger.debug("Настройки успешно загружены")
+        return cast(Dict[str, Any], settings)
+    except FileNotFoundError:
+        logger.warning(f"Файл настроек не найден по пути: {path}")
+        return {}
+    except json.JSONDecodeError as e:
+        logger.error(f"Ошибка разбора JSON в файле {path}: {str(e)}")
+        return {}

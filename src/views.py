@@ -2,9 +2,8 @@ import json
 from datetime import datetime
 from typing import Any, Dict
 
-from src.data_loader import load_excel_transactions, load_user_settings
 from src.utils import (filter_transactions_by_date, get_cards_summary, get_currency_rates, get_greeting,
-                       get_stock_prices, get_top_transactions)
+                       get_stock_prices, get_top_transactions, load_excel_transactions, load_user_settings)
 
 
 def generate_report(date_str: str) -> str:

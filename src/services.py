@@ -49,7 +49,7 @@ def get_bonus_categories(data: List[Dict], year: int, month: int) -> str:
     return json.dumps(cashback_by_category_rounded, ensure_ascii=False, indent=4)
 
 
-def investment_bank(month: str, investment_transactions: List[Dict[str, Any]], input_limit: int) -> float:
+def investment_bank(month: str, investment_transactions: List[Dict[str, Any]], input_limit: int) -> str:
     """
     Показывает накопления через округление ваших трат за указанный период.
     """
@@ -87,8 +87,11 @@ def investment_bank(month: str, investment_transactions: List[Dict[str, Any]], i
         rounded = ((-amount + input_limit - 1) // input_limit) * input_limit
         saving = rounded + amount
         total_savings += saving
+    total_savings_rounded = round(total_savings, 2)
     logger.info(f"Всего накоплено в инвесткопилку: {round(total_savings, 2)} при пороге {input_limit}")
-    return round(total_savings, 2)
+    result = {"total_savings": total_savings_rounded, "limit": input_limit, "month": month}
+
+    return json.dumps(result, ensure_ascii=False)
 
 
 def search_transactions(query_transactions: List[Dict[str, Any]], input_query: str) -> str:
@@ -159,14 +162,13 @@ def search_transfers_to_individuals(transfers_transactions: List[Dict[str, Any]]
 
 
 # if __name__ == "__main__":
-#     from data_loader import load_excel_transactions
+#     from utils import load_excel_transactions
 #
 #     transactions = load_excel_transactions("../data/operations.xlsx")
-#     print(get_bonus_categories(transactions, 2018, 4))
+#     # print(get_bonus_categories(transactions, 2018, 4))
 #     for limit in (10, 50, 100):
-#         savings = investment_bank("2018-10", transactions, limit)
-#         print(f"Порог округления: {limit} ₽ — накоплено в инвесткопилку: {savings} ₽")
-#     query = "маГНИТ"
-#     print(search_transactions(transactions, query))
-#     print(search_by_phone_number(transactions))
-#     print(search_transfers_to_individuals(transactions))
+#         print(investment_bank("2018-10", transactions, limit))
+#     # query = "маГНИТ"
+#     # print(search_transactions(transactions, query))
+#     # print(search_by_phone_number(transactions))
+#     # print(search_transfers_to_individuals(transactions))
