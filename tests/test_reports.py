@@ -6,8 +6,8 @@ import pandas as pd
 import pytest
 from dateutil.relativedelta import relativedelta
 
-from src.reports import (auto_name_save_report, my_name_save_report, spending_by_category,
-                         spending_by_weekday, spending_by_workday)
+from src.reports import (auto_name_save_report, my_name_save_report, spending_by_category, spending_by_weekday,
+                         spending_by_workday)
 
 
 @pytest.fixture
