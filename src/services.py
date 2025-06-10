@@ -89,7 +89,7 @@ def investment_bank(month: str, investment_transactions: List[Dict[str, Any]], i
         total_savings += saving
     total_savings_rounded = round(total_savings, 2)
     logger.info(f"Всего накоплено в инвесткопилку: {round(total_savings, 2)} при пороге {input_limit}")
-    result = {"total_savings": total_savings_rounded, "limit": input_limit, "month": month}
+    result = {"Ваши накопления": total_savings_rounded, "Лимит": input_limit, "За период": month}
 
     return json.dumps(result, ensure_ascii=False)
 

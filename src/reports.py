@@ -107,8 +107,8 @@ def my_name_save_report(filename: str) -> Callable:
     return decorator
 
 
-@my_name_save_report("my_report_by_category.json")
-@auto_name_save_report
+# @my_name_save_report("my_report_by_category.json")
+# @auto_name_save_report
 def spending_by_category(transactions: pd.DataFrame, category: str, date: Optional[str] = None) -> str:
     """
     Возвращает JSON со списком трат по заданной категории
@@ -145,8 +145,8 @@ def spending_by_category(transactions: pd.DataFrame, category: str, date: Option
     return json.dumps(result, ensure_ascii=False, indent=2)
 
 
-@my_name_save_report("my_report_by_weekday.json")
-@auto_name_save_report
+# @my_name_save_report("my_report_by_weekday.json")
+# @auto_name_save_report
 def spending_by_weekday(transactions: pd.DataFrame, date: Optional[str] = None) -> str:
     """
     Возвращает JSON со средними тратами по дням недели за последние 3 календарных месяца от переданной даты.
@@ -201,8 +201,8 @@ def spending_by_weekday(transactions: pd.DataFrame, date: Optional[str] = None) 
     return json.dumps(result_list, ensure_ascii=False, indent=2)
 
 
-@my_name_save_report("my_report_by_workday.json")
-@auto_name_save_report
+# @my_name_save_report("my_report_by_workday.json")
+# @auto_name_save_report
 def spending_by_workday(transactions: pd.DataFrame, date: Optional[str] = None) -> str:
     """
     Возвращает JSON со средними тратами в рабочий и выходной день за последние 3 календарных месяца от переданной даты.
