@@ -1,25 +1,77 @@
-2025-06-10 12:08:58,941 - reports - DEBUG - Логгер инициализирован и готов к работе
-2025-06-10 12:09:01,616 - reports - DEBUG - Декоратор my_name_save_report вызвал функцию spending_by_category
-2025-06-10 12:09:01,616 - reports - DEBUG - Декоратор auto_name_save_report вызвал функцию spending_by_category
-2025-06-10 12:09:01,617 - reports - DEBUG - Анализ категории: Супермаркеты, дата: 2019-05-06
-2025-06-10 12:09:01,617 - reports - DEBUG - Период фильтрации: 2019-02-06 — 2019-05-06
-2025-06-10 12:09:01,664 - reports - INFO - Найдено 146 транзакций по категории 'Супермаркеты'
-2025-06-10 12:09:01,668 - reports - DEBUG - Подготовлено 146 записей для JSON-отчёта по категории 'Супермаркеты'
-2025-06-10 12:09:01,673 - reports - INFO - Файл report_spending_by_category.json успешно сохранён
-2025-06-10 12:09:01,677 - reports - INFO - Файл my_report_by_category.json успешно сохранён
-2025-06-10 12:09:01,677 - reports - DEBUG - Декоратор my_name_save_report вызвал функцию spending_by_weekday
-2025-06-10 12:09:01,677 - reports - DEBUG - Декоратор auto_name_save_report вызвал функцию spending_by_weekday
-2025-06-10 12:09:01,677 - reports - DEBUG - Анализ трат по дням недели, дата: 2019-05-06
-2025-06-10 12:09:01,678 - reports - DEBUG - Период: 2019-02-06 — 2019-05-06
-2025-06-10 12:09:01,799 - reports - INFO - Количество трат за период: 427
-2025-06-10 12:09:01,805 - reports - DEBUG - Подготовлено данных по средним тратам за дни недели: 7 записей
-2025-06-10 12:09:01,806 - reports - INFO - Файл report_spending_by_weekday.json успешно сохранён
-2025-06-10 12:09:01,808 - reports - INFO - Файл my_report_by_weekday.json успешно сохранён
-2025-06-10 12:09:01,808 - reports - DEBUG - Декоратор my_name_save_report вызвал функцию spending_by_workday
-2025-06-10 12:09:01,809 - reports - DEBUG - Декоратор auto_name_save_report вызвал функцию spending_by_workday
-2025-06-10 12:09:01,809 - reports - DEBUG - Анализ трат по типу дня (рабочий/выходной), дата: 2019-05-06
-2025-06-10 12:09:01,809 - reports - DEBUG - Период: 2019-02-06 — 2019-05-06
-2025-06-10 12:09:01,876 - reports - INFO - Количество валидных трат: 401
-2025-06-10 12:09:01,878 - reports - DEBUG - Средние траты рассчитаны: рабочие дни = 1272.48, выходные = 353.08
-2025-06-10 12:09:01,880 - reports - INFO - Файл report_spending_by_workday.json успешно сохранён
-2025-06-10 12:09:01,881 - reports - INFO - Файл my_report_by_workday.json успешно сохранён
+2025-06-10 15:35:25,145 - reports - DEBUG - Логгер инициализирован и готов к работе
+2025-06-10 15:35:26,300 - reports - DEBUG - Декоратор my_name_save_report вызвал функцию spending_by_category
+2025-06-10 15:35:26,301 - reports - DEBUG - Декоратор auto_name_save_report вызвал функцию spending_by_category
+2025-06-10 15:35:26,301 - reports - DEBUG - Анализ категории: Супермаркеты, дата: 2019-05-06
+2025-06-10 15:35:26,305 - reports - DEBUG - Период фильтрации: 2019-02-06 — 2019-05-06
+2025-06-10 15:35:26,325 - reports - INFO - Найдено 1 транзакций по категории 'Супермаркеты'
+2025-06-10 15:35:26,334 - reports - DEBUG - Подготовлено 1 записей для JSON-отчёта по категории 'Супермаркеты'
+2025-06-10 15:35:26,336 - reports - INFO - Файл report_spending_by_category.json успешно сохранён
+2025-06-10 15:35:26,337 - reports - INFO - Файл my_report_by_category.json успешно сохранён
+2025-06-10 15:35:26,343 - reports - DEBUG - Декоратор my_name_save_report вызвал функцию spending_by_category
+2025-06-10 15:35:26,344 - reports - DEBUG - Декоратор auto_name_save_report вызвал функцию spending_by_category
+2025-06-10 15:35:26,344 - reports - DEBUG - Анализ категории: Рестораны, дата: 2019-05-06
+2025-06-10 15:35:26,345 - reports - DEBUG - Период фильтрации: 2019-02-06 — 2019-05-06
+2025-06-10 15:35:26,350 - reports - INFO - Найдено 0 транзакций по категории 'Рестораны'
+2025-06-10 15:35:26,354 - reports - DEBUG - Подготовлено 0 записей для JSON-отчёта по категории 'Рестораны'
+2025-06-10 15:35:26,356 - reports - INFO - Файл report_spending_by_category.json успешно сохранён
+2025-06-10 15:35:26,358 - reports - INFO - Файл my_report_by_category.json успешно сохранён
+2025-06-10 15:35:26,365 - reports - DEBUG - Декоратор my_name_save_report вызвал функцию spending_by_category
+2025-06-10 15:35:26,365 - reports - DEBUG - Декоратор auto_name_save_report вызвал функцию spending_by_category
+2025-06-10 15:35:26,366 - reports - DEBUG - Анализ категории: Супермаркеты, дата: 2019-02-01
+2025-06-10 15:35:26,366 - reports - DEBUG - Период фильтрации: 2018-11-01 — 2019-02-01
+2025-06-10 15:35:26,373 - reports - INFO - Найдено 1 транзакций по категории 'Супермаркеты'
+2025-06-10 15:35:26,378 - reports - DEBUG - Подготовлено 1 записей для JSON-отчёта по категории 'Супермаркеты'
+2025-06-10 15:35:26,380 - reports - INFO - Файл report_spending_by_category.json успешно сохранён
+2025-06-10 15:35:26,382 - reports - INFO - Файл my_report_by_category.json успешно сохранён
+2025-06-10 15:35:26,389 - reports - DEBUG - Декоратор my_name_save_report вызвал функцию spending_by_category
+2025-06-10 15:35:26,390 - reports - DEBUG - Декоратор auto_name_save_report вызвал функцию spending_by_category
+2025-06-10 15:35:26,390 - reports - DEBUG - Анализ категории: Супермаркеты, дата: None
+2025-06-10 15:35:26,390 - reports - DEBUG - Период фильтрации: 2023-03-10 — 2023-06-10
+2025-06-10 15:35:26,396 - reports - INFO - Найдено 0 транзакций по категории 'Супермаркеты'
+2025-06-10 15:35:26,400 - reports - DEBUG - Подготовлено 0 записей для JSON-отчёта по категории 'Супермаркеты'
+2025-06-10 15:35:26,402 - reports - INFO - Файл report_spending_by_category.json успешно сохранён
+2025-06-10 15:35:26,403 - reports - INFO - Файл my_report_by_category.json успешно сохранён
+2025-06-10 15:35:26,409 - reports - DEBUG - Декоратор my_name_save_report вызвал функцию spending_by_weekday
+2025-06-10 15:35:26,410 - reports - DEBUG - Декоратор auto_name_save_report вызвал функцию spending_by_weekday
+2025-06-10 15:35:26,410 - reports - DEBUG - Анализ трат по дням недели, дата: 2023-03-10
+2025-06-10 15:35:26,410 - reports - DEBUG - Период: 2022-12-10 — 2023-03-10
+2025-06-10 15:35:26,416 - reports - INFO - Количество трат за период: 7
+2025-06-10 15:35:26,430 - reports - DEBUG - Подготовлено данных по средним тратам за дни недели: 7 записей
+2025-06-10 15:35:26,433 - reports - INFO - Файл report_spending_by_weekday.json успешно сохранён
+2025-06-10 15:35:26,435 - reports - INFO - Файл my_report_by_weekday.json успешно сохранён
+2025-06-10 15:35:26,441 - reports - DEBUG - Декоратор my_name_save_report вызвал функцию spending_by_weekday
+2025-06-10 15:35:26,441 - reports - DEBUG - Декоратор auto_name_save_report вызвал функцию spending_by_weekday
+2025-06-10 15:35:26,441 - reports - DEBUG - Анализ трат по дням недели, дата: None
+2025-06-10 15:35:26,442 - reports - DEBUG - Период: 2025-03-10 — 2025-06-10
+2025-06-10 15:35:26,447 - reports - INFO - Количество трат за период: 0
+2025-06-10 15:35:26,456 - reports - DEBUG - Подготовлено данных по средним тратам за дни недели: 7 записей
+2025-06-10 15:35:26,459 - reports - INFO - Файл report_spending_by_weekday.json успешно сохранён
+2025-06-10 15:35:26,462 - reports - INFO - Файл my_report_by_weekday.json успешно сохранён
+2025-06-10 15:35:26,469 - reports - DEBUG - Декоратор my_name_save_report вызвал функцию spending_by_workday
+2025-06-10 15:35:26,469 - reports - DEBUG - Декоратор auto_name_save_report вызвал функцию spending_by_workday
+2025-06-10 15:35:26,469 - reports - DEBUG - Анализ трат по типу дня (рабочий/выходной), дата: 2023-03-10
+2025-06-10 15:35:26,470 - reports - DEBUG - Период: 2022-12-10 — 2023-03-10
+2025-06-10 15:35:26,475 - reports - INFO - Количество валидных трат: 7
+2025-06-10 15:35:26,479 - reports - DEBUG - Средние траты рассчитаны: рабочие дни = 380.0, выходные = 450.0
+2025-06-10 15:35:26,481 - reports - INFO - Файл report_spending_by_workday.json успешно сохранён
+2025-06-10 15:35:26,482 - reports - INFO - Файл my_report_by_workday.json успешно сохранён
+2025-06-10 15:35:26,490 - reports - DEBUG - Декоратор my_name_save_report вызвал функцию spending_by_workday
+2025-06-10 15:35:26,490 - reports - DEBUG - Декоратор auto_name_save_report вызвал функцию spending_by_workday
+2025-06-10 15:35:26,490 - reports - DEBUG - Анализ трат по типу дня (рабочий/выходной), дата: None
+2025-06-10 15:35:26,491 - reports - DEBUG - Период: 2022-12-23 — 2023-03-23
+2025-06-10 15:35:26,498 - reports - INFO - Количество валидных трат: 7
+2025-06-10 15:35:26,504 - reports - DEBUG - Средние траты рассчитаны: рабочие дни = 380.0, выходные = 450.0
+2025-06-10 15:35:26,506 - reports - INFO - Файл report_spending_by_workday.json успешно сохранён
+2025-06-10 15:35:26,508 - reports - INFO - Файл my_report_by_workday.json успешно сохранён
+2025-06-10 15:35:26,514 - reports - DEBUG - Декоратор auto_name_save_report вызвал функцию func_returns_not_string
+2025-06-10 15:35:26,514 - reports - ERROR - Функция func_returns_not_string вернула не строку, а <class 'int'>
+2025-06-10 15:35:26,519 - reports - DEBUG - Декоратор auto_name_save_report вызвал функцию func_returns_invalid_json
+2025-06-10 15:35:26,519 - reports - ERROR - Ошибка при декодировании JSON в функции func_returns_invalid_json
+2025-06-10 15:35:26,523 - reports - DEBUG - Декоратор auto_name_save_report вызвал функцию func_returns_json_not_list_or_dict
+2025-06-10 15:35:26,524 - reports - ERROR - Функция func_returns_json_not_list_or_dict вернула JSON не в виде списка или словаря
+2025-06-10 15:35:26,528 - reports - DEBUG - Декоратор my_name_save_report вызвал функцию func_my_name_returns_not_string
+2025-06-10 15:35:26,529 - reports - ERROR - Функция func_my_name_returns_not_string вернула не строку, а <class 'int'>
+2025-06-10 15:35:26,534 - reports - DEBUG - Декоратор my_name_save_report вызвал функцию func_my_name_returns_invalid_json
+2025-06-10 15:35:26,534 - reports - ERROR - Ошибка при декодировании JSON в функции func_my_name_returns_invalid_json
+2025-06-10 15:35:26,539 - reports - DEBUG - Декоратор my_name_save_report вызвал функцию func_my_name_returns_json_not_list_or_dict
+2025-06-10 15:35:26,540 - reports - ERROR - Функция func_my_name_returns_json_not_list_or_dict вернула JSON не в виде списка или словаря

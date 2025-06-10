@@ -1,4 +1,5 @@
 import json
+import locale
 import logging
 import os
 from datetime import datetime
@@ -174,11 +175,19 @@ def spending_by_weekday(transactions: pd.DataFrame, date: Optional[str] = None) 
 
     logger.info(f"Количество трат за период: {len(filtered)}")
 
-    filtered["День недели"] = filtered["Дата операции"].dt.day_name()
+    filtered["День недели"] = filtered["Дата операции"].dt.day_name().map({
+        "Monday": "Понедельник",
+        "Tuesday": "Вторник",
+        "Wednesday": "Среда",
+        "Thursday": "Четверг",
+        "Friday": "Пятница",
+        "Saturday": "Суббота",
+        "Sunday": "Воскресенье",
+    })
 
     result = filtered.groupby("День недели")["Сумма операции"].mean().abs()
 
-    weekday_order = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    weekday_order = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
     result = result.reindex(weekday_order).fillna(0)
 
     result_list = [{"День недели": day, "Средние траты": round(result[day], 2)} for day in weekday_order]
@@ -221,10 +230,10 @@ def spending_by_workday(transactions: pd.DataFrame, date: Optional[str] = None) 
     return json.dumps(result_dict, ensure_ascii=False, indent=2)
 
 
-if __name__ == "__main__":
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    data_path = os.path.join(base_dir, "data", "operations.xlsx")
-    df = pd.read_excel(data_path)
-    spending_by_category(df, category="Супермаркеты", date="2019-05-06")
-    spending_by_weekday(df, date="2019-05-06")
-    spending_by_workday(df, date="2019-05-06")
+# if __name__ == "__main__":
+#     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#     data_path = os.path.join(base_dir, "data", "operations.xlsx")
+#     df = pd.read_excel(data_path)
+#     spending_by_category(df, category="Супермаркеты", date="2019-05-06")
+#     spending_by_weekday(df, date="2019-05-06")
+#     spending_by_workday(df, date="2019-05-06")
