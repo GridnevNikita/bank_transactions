@@ -159,16 +159,3 @@ def search_transfers_to_individuals(transfers_transactions: List[Dict[str, Any]]
             filtered_person.append(transaction)
     logger.info(f"Найдено транзакций с переводами физическим лицам: {len(filtered_person)}")
     return json.dumps(filtered_person, ensure_ascii=False, indent=2)
-
-
-# if __name__ == "__main__":
-#     from utils import load_excel_transactions
-#
-#     transactions = load_excel_transactions("../data/operations.xlsx")
-#     # print(get_bonus_categories(transactions, 2018, 4))
-#     for limit in (10, 50, 100):
-#         print(investment_bank("2018-10", transactions, limit))
-#     # query = "маГНИТ"
-#     # print(search_transactions(transactions, query))
-#     # print(search_by_phone_number(transactions))
-#     # print(search_transfers_to_individuals(transactions))
