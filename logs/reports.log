@@ -1,0 +1,25 @@
+2025-06-10 12:08:58,941 - reports - DEBUG - Логгер инициализирован и готов к работе
+2025-06-10 12:09:01,616 - reports - DEBUG - Декоратор my_name_save_report вызвал функцию spending_by_category
+2025-06-10 12:09:01,616 - reports - DEBUG - Декоратор auto_name_save_report вызвал функцию spending_by_category
+2025-06-10 12:09:01,617 - reports - DEBUG - Анализ категории: Супермаркеты, дата: 2019-05-06
+2025-06-10 12:09:01,617 - reports - DEBUG - Период фильтрации: 2019-02-06 — 2019-05-06
+2025-06-10 12:09:01,664 - reports - INFO - Найдено 146 транзакций по категории 'Супермаркеты'
+2025-06-10 12:09:01,668 - reports - DEBUG - Подготовлено 146 записей для JSON-отчёта по категории 'Супермаркеты'
+2025-06-10 12:09:01,673 - reports - INFO - Файл report_spending_by_category.json успешно сохранён
+2025-06-10 12:09:01,677 - reports - INFO - Файл my_report_by_category.json успешно сохранён
+2025-06-10 12:09:01,677 - reports - DEBUG - Декоратор my_name_save_report вызвал функцию spending_by_weekday
+2025-06-10 12:09:01,677 - reports - DEBUG - Декоратор auto_name_save_report вызвал функцию spending_by_weekday
+2025-06-10 12:09:01,677 - reports - DEBUG - Анализ трат по дням недели, дата: 2019-05-06
+2025-06-10 12:09:01,678 - reports - DEBUG - Период: 2019-02-06 — 2019-05-06
+2025-06-10 12:09:01,799 - reports - INFO - Количество трат за период: 427
+2025-06-10 12:09:01,805 - reports - DEBUG - Подготовлено данных по средним тратам за дни недели: 7 записей
+2025-06-10 12:09:01,806 - reports - INFO - Файл report_spending_by_weekday.json успешно сохранён
+2025-06-10 12:09:01,808 - reports - INFO - Файл my_report_by_weekday.json успешно сохранён
+2025-06-10 12:09:01,808 - reports - DEBUG - Декоратор my_name_save_report вызвал функцию spending_by_workday
+2025-06-10 12:09:01,809 - reports - DEBUG - Декоратор auto_name_save_report вызвал функцию spending_by_workday
+2025-06-10 12:09:01,809 - reports - DEBUG - Анализ трат по типу дня (рабочий/выходной), дата: 2019-05-06
+2025-06-10 12:09:01,809 - reports - DEBUG - Период: 2019-02-06 — 2019-05-06
+2025-06-10 12:09:01,876 - reports - INFO - Количество валидных трат: 401
+2025-06-10 12:09:01,878 - reports - DEBUG - Средние траты рассчитаны: рабочие дни = 1272.48, выходные = 353.08
+2025-06-10 12:09:01,880 - reports - INFO - Файл report_spending_by_workday.json успешно сохранён
+2025-06-10 12:09:01,881 - reports - INFO - Файл my_report_by_workday.json успешно сохранён
