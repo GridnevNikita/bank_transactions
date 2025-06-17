@@ -1,0 +1,3 @@
+2025-06-10 19:28:54,752 - utils - DEBUG - Логгер инициализирован и готов к работе
+2025-06-10 19:28:54,754 - utils - DEBUG - Начинаем загрузку транзакций из Excel-файла: C:\Users\user\Desktop\Projects\bank_transactions\data\operations.xlsx
+2025-06-10 19:28:56,966 - utils - DEBUG - Успешно загружено 6705 транзакций
